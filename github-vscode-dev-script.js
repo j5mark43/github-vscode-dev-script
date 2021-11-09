@@ -1,9 +1,11 @@
 // ==UserScript==
 // @name         VS Code For Github Repo
 // @namespace    http://github.com/j5bot
-// @version      0.1
+// @version      0.1.2
 // @description  Add quick links to VS Code web app to github pages
 // @author       Jonathan 'J5' Cook (jonathan.j5.cook@gmail.com)
+// @downloadURL  https://raw.githubusercontent.com/j5mark43/github-vscode-dev-script/main/github-vscode-dev-script.js
+// @updateURL    https://raw.githubusercontent.com/j5mark43/github-vscode-dev-script/main/github-vscode-dev-script.meta.js
 // @match        https://github.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=github.com
 // @grant        none
@@ -45,7 +47,6 @@
 
     const branchParams = {
         query: 'a[data-hydro-click*="FIND_FILE_BUTTON"]',
-        insertPosition: 'beforeBegin',
     };
 
     const TypeActionParams = {
@@ -59,7 +60,6 @@
             },
         },
     };
-
 
     const getPathSegments = (location) => {
         const { pathname } = location;
@@ -78,19 +78,20 @@
     const addButton = (action) => {
         const { name, type, url } = action;
 
-        const params = TypeActionParams[type];
-        const example = document.querySelector(params.query);
+        const { query, style = {}, insertPosition = 'beforeBegin' } = TypeActionParams[type];
+
+        const example = document.querySelector(query);
         const button = document.createElement('a');
         button.target = `_${name}`;
         button.className = example.className.replace(/(js-.*)/ig, '');
         button.innerHTML = `<div class="vs-dev-button">VS Dev</div>`;
         button.href = `${vsBaseURL}/${url}`;
 
-        Object.entries(params.style).forEach(([style, value]) => {
+        Object.entries(style).forEach(([style, value]) => {
             button.style.setProperty(style, value, 'important');
         });
 
-        example.insertAdjacentElement(params.insertPosition, button);
+        example.insertAdjacentElement(insertPosition, button);
         return button;
     };
 
