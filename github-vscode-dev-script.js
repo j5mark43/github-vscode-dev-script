@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         VS Code For Github Repo
 // @namespace    http://github.com/j5bot
-// @version      0.1.2
+// @version      0.1.3
 // @description  Add quick links to VS Code web app to github pages
 // @author       Jonathan 'J5' Cook (jonathan.j5.cook@gmail.com)
 // @downloadURL  https://raw.githubusercontent.com/j5mark43/github-vscode-dev-script/main/github-vscode-dev-script.js
@@ -81,6 +81,12 @@
         const { query, style = {}, insertPosition = 'beforeBegin' } = TypeActionParams[type];
 
         const example = document.querySelector(query);
+
+        if (!example) {
+            console.error('Unable to find example button/link', action);
+            return;
+        }
+
         const button = document.createElement('a');
         button.target = `_${name}`;
         button.className = example.className.replace(/(js-.*)/ig, '');
@@ -118,5 +124,6 @@
             break;
     }
 
+    debugger;
     addButton({ type, name, url });
 })();
