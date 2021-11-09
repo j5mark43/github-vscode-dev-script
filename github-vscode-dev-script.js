@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         VS Code For Github Repo
 // @namespace    http://github.com/j5bot
-// @version      0.1.4
+// @version      0.1.5
 // @description  Add quick links to VS Code web app to github pages
 // @author       Jonathan 'J5' Cook (jonathan.j5.cook@gmail.com)
 // @downloadURL  https://raw.githubusercontent.com/j5mark43/github-vscode-dev-script/main/github-vscode-dev-script.js
