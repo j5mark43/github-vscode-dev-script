@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         VS Code For Github Repo
 // @namespace    http://github.com/j5bot
-// @version      0.1.3
+// @version      0.1.4
 // @description  Add quick links to VS Code web app to github pages
 // @author       Jonathan 'J5' Cook (jonathan.j5.cook@gmail.com)
 // @downloadURL  https://raw.githubusercontent.com/j5mark43/github-vscode-dev-script/main/github-vscode-dev-script.js
@@ -9,9 +9,10 @@
 // @match        https://github.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=github.com
 // @grant        none
+// @run-at       document-idle
 // ==/UserScript==
 
-(function () {
+window.setTimeout(function () {
     'use strict';
 
     const vsBaseURL = 'https://vscode.dev/github';
@@ -124,6 +125,5 @@
             break;
     }
 
-    debugger;
     addButton({ type, name, url });
-})();
+}, 500);
